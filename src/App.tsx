@@ -5,7 +5,7 @@ const App: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-950 to-black text-gray-100 font-sans antialiased">
+    <div className="min-h-screen bg-gradient-to-t from-black via-purple-800 to-black text-gray-100 font-sans antialiased">
       {/* ШАПКА */}
       <header className="flex items-center justify-between px-4 py-3 border-b border-white/10 backdrop-blur-sm bg-black/30 max-w-6xl mx-auto">
         <div className="text-xl font-bold text-white">AI-Помощник</div>
@@ -22,11 +22,11 @@ const App: React.FC = () => {
       </header>
       {menuOpen && (
         <div className="md:hidden bg-black/80 backdrop-blur-sm border-b border-white/10 px-4 py-2 flex flex-col space-y-2 text-sm font-medium">
-          <a href="#" className="hover:text-indigo-400 transition">Главная</a>
-          <a href="#" className="hover:text-indigo-400 transition">Возможности</a>
-          <a href="#" className="hover:text-indigo-400 transition">Цены</a>
-          <a href="#" className="hover:text-indigo-400 transition">Отзывы</a>
-          <a href="#" className="hover:text-indigo-400 transition">Контакты</a>
+          <a href="#" className="hover:text-purple-800 transition">Главная</a>
+          <a href="#" className="hover:text-purple-800 transition">Возможности</a>
+          <a href="#" className="hover:text-purple-800 transition">Цены</a>
+          <a href="#" className="hover:text-purple-800 transition">Отзывы</a>
+          <a href="#" className="hover:text-purple-800 transition">Контакты</a>
         </div>
       )}
 
@@ -34,7 +34,7 @@ const App: React.FC = () => {
         {/* ГЕРОЙ */}
         <section className="text-center md:text-left md:flex md:items-center md:justify-between gap-8">
           <div className="md:w-2/3">
-            <h1 className="text-3xl md:text-5xl font-bold leading-tight bg-gradient-to-r from-indigo-100 to-purple-400 bg-clip-text text-transparent">
+            <h1 className="text-3xl md:text-5xl font-bold leading-tight bg-gradient-to-tr from-white to-purple-400 bg-clip-text text-transparent">
               Искусственный интеллект — стал проще
             </h1>
             <p className="text-gray-300 mt-4 text-lg">
@@ -102,7 +102,7 @@ const App: React.FC = () => {
               { step: '4', title: 'Результат', desc: 'Получите готовый ответ или решение.' },
             ].map((item, idx) => (
               <div key={idx} className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 text-center hover:border-indigo-400/50 transition">
-                <div className="text-3xl font-bold text-indigo-400">{item.step}</div>
+                <div className="text-3xl font-bold text-indigo-1000">{item.step}</div>
                 <h3 className="font-semibold text-lg text-white mt-2">{item.title}</h3>
                 <p className="text-gray-300 text-sm mt-1">{item.desc}</p>
               </div>
