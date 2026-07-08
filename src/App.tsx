@@ -9,8 +9,8 @@ const App: React.FC = () => {
       {/* ШАПКА */}
       <header className="flex items-center justify-between px-4 py-3 border-b border-white/10 backdrop-blur-sm bg-black/30 max-w-6xl mx-auto">
         <div className="text-xl font-bold text-white">AI-Помощник</div>
-        <nav className="hidden md:flex space-x-6 text-sm font-medium">
-          <a href="#" className="hover:text-indigo-400 transition">Главная</a>
+        <nav className="hidden md:flex justify-center items-center gap-6 text-sm font-medium">
+          <a href="/" className="hover:text-indigo-400 transition">Главная</a>
           <a href="#" className="hover:text-indigo-400 transition">Возможности</a>
           <a href="#" className="hover:text-indigo-400 transition">Цены</a>
           <a href="#" className="hover:text-indigo-400 transition">Отзывы</a>
