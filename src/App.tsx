@@ -20,15 +20,15 @@ const App: React.FC = () => {
           ☰
         </button>
       </header>
-      {menuOpen && (
-        <div className="md:hidden bg-black/80 backdrop-blur-sm border-b border-white/10 px-4 py-2 flex flex-col space-y-2 text-sm font-medium">
-          <a href="#" className="hover:text-purple-800 transition">Главная</a>
-          <a href="#" className="hover:text-purple-800 transition">Возможности</a>
-          <a href="#" className="hover:text-purple-800 transition">Цены</a>
-          <a href="#" className="hover:text-purple-800 transition">Отзывы</a>
-          <a href="#" className="hover:text-purple-800 transition">Контакты</a>
-        </div>
-      )}
+       {menuOpen && (
+         <div className="md:hidden bg-black/80 backdrop-blur-sm border-b border-white/10 px-4 py-2 flex flex-col items-center space-y-2 text-sm font-medium">
+           <a href="/" className="hover:text-indigo-400 transition text-center">Главная</a>
+           <a href="#features" className="hover:text-indigo-400 transition text-center">Возможности</a>
+           <a href="#pricing" className="hover:text-indigo-400 transition text-center">Цены</a>
+           <a href="#reviews" className="hover:text-indigo-400 transition text-center">Отзывы</a>
+           <a href="#contacts" className="hover:text-indigo-400 transition text-center">Контакты</a>
+         </div>
+       )}
 
       <main className="max-w-6xl mx-auto px-4 py-8 space-y-16">
         {/* ГЕРОЙ */}
