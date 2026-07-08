@@ -4,10 +4,10 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/',           
+  base: '/',
   build: {
-    outDir: 'dist',    
-    sourcemap: false,  
-    minify: 'esbuild', 
-  },
+    outDir: 'dist', 
+    sourcemap: false,
+    minify: 'esbuild',
+  }
 })
