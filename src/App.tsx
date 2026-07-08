@@ -49,11 +49,6 @@ const App: React.FC = () => {
               </button>
             </div>
           </div>
-          <div className="hidden md:block md:w-1/3">
-            <div className="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 backdrop-blur-sm h-48 rounded-2xl flex items-center justify-center text-indigo-300 font-bold text-xl border border-white/10">
-              Изображение
-            </div>
-          </div>
         </section>
 
         {/* СТАТИСТИКА */}
