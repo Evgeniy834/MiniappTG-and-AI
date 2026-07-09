@@ -12,9 +12,9 @@ const App: React.FC = () => {
         <nav className="hidden md:flex justify-center items-center gap-6 text-sm font-medium">
           <a href="/" className="hover:text-indigo-400 transition">Главная</a>
           <a href="#" className="hover:text-indigo-400 transition">Возможности</a>
-          <a href="#" className="hover:text-indigo-400 transition">Цены</a>
+          <a href="#" className="hover:text-indigo-400 transition">Инструкция</a>
+          <a href="#" className="hover:text-indigo-400 transition">Стоимость</a>
           <a href="#" className="hover:text-indigo-400 transition">Отзывы</a>
-          <a href="#" className="hover:text-indigo-400 transition">Контакты</a>
         </nav>
         <button className="md:hidden text-2xl text-white" onClick={() => setMenuOpen(!menuOpen)}>
           ☰
@@ -24,9 +24,9 @@ const App: React.FC = () => {
          <div className="md:hidden bg-black/80 backdrop-blur-sm border-b border-white/20 px-4 py-2 flex flex-col items-center space-y-2 text-sm font-medium">
            <a href="/" className="hover:text-indigo-400 transition text-center">Главная</a>
            <a href="#features" className="hover:text-indigo-400 transition text-center">Возможности</a>
-           <a href="#pricing" className="hover:text-indigo-400 transition text-center">Цены</a>
-           <a href="#reviews" className="hover:text-indigo-400 transition text-center">Отзывы</a>
-           <a href="#contacts" className="hover:text-indigo-400 transition text-center">Контакты</a>
+           <a href="#pricing" className="hover:text-indigo-400 transition text-center">Инструкция</a>
+           <a href="#reviews" className="hover:text-indigo-400 transition text-center">Стоимость</a>
+           <a href="#contacts" className="hover:text-indigo-400 transition text-center">Отзывы</a>
          </div>
        )}
 
