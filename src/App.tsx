@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 // Импорты страниц
 import Home from './pages/Home';
-import Instructions from './pages/Instructions';
-import Opportunities from './pages/Opportunities';
-import Reviews from './pages/Reviews';
-import Pricing from './pages/Pricing';
+import Instructions from './pages/instructions';
+import Opportunities from './pages/opportunities';
+import Reviews from './pages/reviews';
+import Pricing from './pages/prising';
 
 const App: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
