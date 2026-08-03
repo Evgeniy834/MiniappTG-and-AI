@@ -1,0 +1,9 @@
+*.py
+requirements.txt
+config.py
+database.py
+keyboards.py
+mainfile.py
+telegrambot/
+venv/
+Dockerfile
