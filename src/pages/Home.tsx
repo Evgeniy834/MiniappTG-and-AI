@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Home: React.FC = () => {
+interface HomeProps {
+  navigateTo: (page: string) => void;
+}
+
+const Home: React.FC<HomeProps> = ({ navigateTo }) => {
   return (
     <div className="space-y-16">
       {/* ГЕРОЙ */}
@@ -16,7 +20,10 @@ const Home: React.FC = () => {
             <button className="px-6 py-3 bg-gradient-to-b from-indigo-500 to-purple-600 text-white rounded-full text-sm font-medium hover:shadow-lg hover:shadow-indigo-500/30 transition">
               Начать
             </button>
-            <button className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-medium hover:bg-white/20 transition border border-white/20">
+            <button 
+              onClick={() => navigateTo('opportunities')}
+              className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-medium hover:bg-white/20 transition border border-white/20"
+            >
               Узнать больше
             </button>
           </div>

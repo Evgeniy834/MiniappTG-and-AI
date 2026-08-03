@@ -2,26 +2,24 @@ import React, { useState } from 'react';
 
 // Импорты страниц
 import Home from './pages/Home';
-import Instructions from './pages/instructions';
-import Opportunities from './pages/opportunities';
-import Reviews from './pages/reviews';
-import Pricing from './pages/prising';
+import Instructions from './pages/Instructions';
+import Opportunities from './pages/Opportunities';
+import Reviews from './pages/Reviews';
+import Pricing from './pages/Pricing';
 
 const App: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
 
-  // Функция переключения страниц
   const navigateTo = (page: string) => {
     setCurrentPage(page);
     setMenuOpen(false);
   };
 
-  // Рендеринг текущей страницы
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <Home />;
+        return <Home navigateTo={navigateTo} />;
       case 'instructions':
         return <Instructions />;
       case 'opportunities':
@@ -31,7 +29,7 @@ const App: React.FC = () => {
       case 'pricing':
         return <Pricing />;
       default:
-        return <Home />;
+        return <Home navigateTo={navigateTo} />;
     }
   };
 
@@ -41,40 +39,13 @@ const App: React.FC = () => {
       <header className="flex items-center justify-between px-4 py-3 border-b border-white/10 backdrop-blur-sm bg-black/30 max-w-6xl mx-auto">
         <div className="text-xl font-bold text-white">AI-Помощник</div>
         <nav className="hidden md:flex justify-center items-center gap-6 text-sm font-medium">
-          <button 
-            onClick={() => navigateTo('home')} 
-            className={`transition ${currentPage === 'home' ? 'text-purple-400 border-b-2 border-purple-400 pb-1' : 'hover:text-purple-400'}`}
-          >
-            Главная
-          </button>
-          <button 
-            onClick={() => navigateTo('opportunities')} 
-            className={`transition ${currentPage === 'opportunities' ? 'text-purple-400 border-b-2 border-purple-400 pb-1' : 'hover:text-purple-400'}`}
-          >
-            Возможности
-          </button>
-          <button 
-            onClick={() => navigateTo('instructions')} 
-            className={`transition ${currentPage === 'instructions' ? 'text-purple-400 border-b-2 border-purple-400 pb-1' : 'hover:text-purple-400'}`}
-          >
-            Инструкция
-          </button>
-          <button 
-            onClick={() => navigateTo('pricing')} 
-            className={`transition ${currentPage === 'pricing' ? 'text-purple-400 border-b-2 border-purple-400 pb-1' : 'hover:text-purple-400'}`}
-          >
-            Стоимость
-          </button>
-          <button 
-            onClick={() => navigateTo('reviews')} 
-            className={`transition ${currentPage === 'reviews' ? 'text-purple-400 border-b-2 border-purple-400 pb-1' : 'hover:text-purple-400'}`}
-          >
-            Отзывы
-          </button>
+          <button onClick={() => navigateTo('home')} className={`transition ${currentPage === 'home' ? 'text-purple-400 border-b-2 border-purple-400 pb-1' : 'hover:text-purple-400'}`}>Главная</button>
+          <button onClick={() => navigateTo('opportunities')} className={`transition ${currentPage === 'opportunities' ? 'text-purple-400 border-b-2 border-purple-400 pb-1' : 'hover:text-purple-400'}`}>Возможности</button>
+          <button onClick={() => navigateTo('instructions')} className={`transition ${currentPage === 'instructions' ? 'text-purple-400 border-b-2 border-purple-400 pb-1' : 'hover:text-purple-400'}`}>Инструкция</button>
+          <button onClick={() => navigateTo('pricing')} className={`transition ${currentPage === 'pricing' ? 'text-purple-400 border-b-2 border-purple-400 pb-1' : 'hover:text-purple-400'}`}>Стоимость</button>
+          <button onClick={() => navigateTo('reviews')} className={`transition ${currentPage === 'reviews' ? 'text-purple-400 border-b-2 border-purple-400 pb-1' : 'hover:text-purple-400'}`}>Отзывы</button>
         </nav>
-        <button className="md:hidden text-2xl text-white" onClick={() => setMenuOpen(!menuOpen)}>
-          ☰
-        </button>
+        <button className="md:hidden text-2xl text-white" onClick={() => setMenuOpen(!menuOpen)}>☰</button>
       </header>
 
       {/* МОБИЛЬНОЕ МЕНЮ */}
