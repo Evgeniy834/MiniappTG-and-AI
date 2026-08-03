@@ -17,9 +17,12 @@ const Home: React.FC<HomeProps> = ({ navigateTo }) => {
             Платформа, где можно не только писать, но и говорить, показывать ИИ что угодно!
           </p>
           <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
-            <button className="px-6 py-3 bg-gradient-to-b from-indigo-500 to-purple-600 text-white rounded-full text-sm font-medium hover:shadow-lg hover:shadow-indigo-500/30 transition">
-              Начать
-            </button>
+          <button
+            onClick={() => navigateTo('chat')} // 👈 теперь ведёт в чат
+            className="px-6 py-3 bg-gradient-to-b from-indigo-500 to-purple-600 text-white rounded-full text-sm font-medium hover:shadow-lg hover:shadow-indigo-500/30 transition"
+          >
+            Начать
+          </button>
             <button 
               onClick={() => navigateTo('opportunities')}
               className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white rounded-full text-sm font-medium hover:bg-white/20 transition border border-white/20"
