@@ -63,9 +63,9 @@ async def ask_routerai(user_id: int, user_message: str) -> str:
 # ========== ХЕНДЛЕРЫ ==========
 @router.message(Command("start"))
 async def startmessage(message: types.Message):
-    user_id = Message.from_user.id
-    username = Message.from_user.username or "Без имени"
-    get_or_create_user(user_id, username)   
+    user_id = message.from_user.id
+    username = message.from_user.username or "Без имени"
+    get_or_create_user(user_id, username)  
     await message.answer(
         f"👋 Привет, {username}!\n\n"
         f"Добро пожаловать в <b>'название придумаем'</b> — твой AI-помощник для создания всего, что только можно придумать.\n\n"
@@ -77,8 +77,9 @@ async def startmessage(message: types.Message):
 
 
 @router.callback_query(F. data == 'back_menu')
-async def back_menu(calllback: CallbackQuery): 
-    await calllback.message.edit_text(
+async def back_menu(callback: CallbackQuery):
+    await callback.answer() 
+    await callback.message.edit_text(
         f"Добро пожаловать в <b>'название придумаем'</b> — твой AI-помощник для создания всего, что только можно придумать.\n\n"
         f"✨ Ты можешь общаться со мной. У тебя есть 10 запросов каждые 12 часов.\n"
         f"🎁 Пройди регистрацию и получи 1 день пользования в подарок бесплатно!",
@@ -88,6 +89,7 @@ async def back_menu(calllback: CallbackQuery):
 
 @router.callback_query(F. data == 'help')
 async def help(callback: CallbackQuery):
+    await callback.answer()
     await callback.message.edit_text(
         f"Если возникли проблемы обращайся - @username",
         reply_markup=startkeys2,
@@ -96,6 +98,7 @@ async def help(callback: CallbackQuery):
 
 @router.callback_query(F. data == 'manuals')
 async def help(callback: CallbackQuery):
+    await callback.answer()
     await callback.message.edit_text(
         f"<b>Инструкция для новичка:</b> как начать пользоваться платформой за 5 шагов!\n\n"
         f"1. <b>Открой нашего бота в Telegram</b> и нажми кнопку <b>«Открыть Mini App»</b> — это главный экран, где происходит всё волшебство.\n"
