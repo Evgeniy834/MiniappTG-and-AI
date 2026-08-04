@@ -174,7 +174,7 @@ useEffect(() => {
       // iOS требует getUserMedia ВНУТРИ обработчика клика
       const stream = await navigator.mediaDevices.getUserMedia({
         video: {
-          facingMode: 'user',
+          facingMode: 'environment',
           width: { ideal: 320 },
           height: { ideal: 320 },
         },
@@ -376,7 +376,11 @@ useEffect(() => {
                   <img src={msg.fileUrl} alt="Фото" className="rounded-lg max-w-[200px] max-h-[200px] object-cover" />
                 )}
                 {msg.type === 'video' && msg.fileUrl && (
-                  <video src={msg.fileUrl} controls className="rounded-lg max-w-[200px] max-h-[200px]" />
+                  <video
+                    src={msg.fileUrl}
+                    controls
+                    className="rounded-full w-[200px] h-[200px] object-cover border-2 border-white/10"
+                  />
                 )}
                 {msg.type !== 'image' && msg.type !== 'video' && (
                   <p className="text-sm leading-relaxed break-words">{msg.content}</p>
@@ -413,7 +417,7 @@ useEffect(() => {
             <video
               ref={videoRef}
               muted
-              className="rounded-xl w-[200px] h-[200px] border-2 border-purple-400/50 object-cover"
+              className="rounded-full w-[200px] h-[200px] border-2 border-purple-400/50 object-cover"
             />
             <div className="text-xs text-purple-400 animate-pulse">⏺ Готов к записи. Нажмите кнопку 🎥</div>
           </div>
