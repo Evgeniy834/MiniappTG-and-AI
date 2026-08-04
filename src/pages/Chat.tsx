@@ -314,11 +314,6 @@ useEffect(() => {
   };
 
   // Если на Android, используем input для выбора файла
-  const handleAndroidRecord = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
