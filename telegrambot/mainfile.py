@@ -110,12 +110,13 @@ async def help(callback: CallbackQuery):
         parse_mode=ParseMode.HTML)
     
 
-#@router.callback_query(F. data == 'help')
-#async def help(callback: CallbackQuery):
-#    await callback.message.edit_text(
-#        f"Если возникли проблемы обращайся - @username",
-#        reply_markup=startkeys2,
-#        parse_mode=ParseMode.HTML)
+@router.callback_query(F. data == 'help')
+async def help(callback: CallbackQuery):
+    await callback.message.edit_text(
+        f"Если возникли проблемы обращайся - @username",
+        reply_markup=startkeys2,
+        parse_mode=ParseMode.HTML)
+
 
 @router.message(F.text & ~F.text.startswith('/'))
 async def handle_ai_message(message: types.Message):
@@ -123,6 +124,22 @@ async def handle_ai_message(message: types.Message):
     username = message.from_user.username or "Без имени"
     user_msg = message.text
 
+    # 1. Проверка на пустое сообщение (только пробелы)
+    if not user_msg or not user_msg.strip():
+        await message.answer("Пожалуйста, отправьте текстовое сообщение.")
+        return
+
+    # 2. ЗАЩИТА ОТ ПЕРЕПОЛНЕНИЯ (Denial of Wallet)
+    # Ограничиваем длину, чтобы не тратить лишние токены и не ломать API
+    MAX_MSG_LENGTH = 250
+    if len(user_msg) > MAX_MSG_LENGTH:
+        await message.answer(
+            f"⚠️ Ваше сообщение слишком длинное ({len(user_msg)} символов).\n"
+            f"Пожалуйста, сократите его до {MAX_MSG_LENGTH} символов."
+        )
+        return
+
+    # 3. Работа с БД и проверка лимитов (сохранено как было)
     get_or_create_user(user_id, username)
 
     msg_count = get_message_count_last_12h(user_id)
@@ -132,17 +149,33 @@ async def handle_ai_message(message: types.Message):
             "Пожалуйста, подождите, лимит обновится."
         )
         return
+        
     save_message(user_id, "user", user_msg)
     await bot.send_chat_action(message.chat.id, action="typing")
-    ai_response = await ask_routerai(user_id, user_msg)
-    save_message(user_id, "assistant", ai_response)
-    if not ai_response.strip():
+
+    # 4. ЗАЩИТА ОТ ПАДЕНИЯ БОТА ПРИ ОШИБКЕ API
+    try:
+        ai_response = await ask_routerai(user_id, user_msg)
+    except Exception as e:
+        logger.error(f"Ошибка при запросе к AI (user_id={user_id}): {e}")
+        await message.answer("🤖 Извините, произошла ошибка при обращении к нейросети. Попробуйте позже.")
+        return
+
+    # 5. Проверка, что AI не вернул пустоту
+    if not ai_response or not ai_response.strip():
         ai_response = "🤖 Извините, я не смог сформулировать ответ. Попробуйте переформулировать вопрос."
+        
+    save_message(user_id, "assistant", ai_response)
+
+    # 6. Отправка сообщения с защитой от сломанного HTML
     try:
         await message.answer(ai_response, parse_mode=ParseMode.HTML)
     except Exception as e:
-        logger.error(f"Ошибка при отправке сообщения: {e}")
+        logger.error(f"Ошибка при отправке сообщения с HTML (user_id={user_id}): {e}")
+        # Если AI вернул некорректный HTML (например, незакрытый тег), отправляем как обычный текст
         await message.answer(ai_response)
+
+
 
 # ========== ЗАПУСК ==========
 async def main():
